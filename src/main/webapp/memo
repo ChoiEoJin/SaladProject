@@ -1,0 +1,426 @@
+
+drop sequence roomchatseq;
+create sequence roomchatseq nocache;
+drop table roomchat cascade constraints purge;
+create table roomchat(
+talknum number primary key,
+roomhoner varchar2(30),
+talker varchar2(30),
+talktime timestamp default sysdate,
+talk varchar2(1000)
+);
+
+insert into roomchat values(roomchatseq.nextval,'logintest','logintest',default,'운영자님');
+insert into roomchat values(roomchatseq.nextval,'logintest','logintest',default,'안녕하세요');
+insert into roomchat values(roomchatseq.nextval,'logintest2','logintest2',default,'문의사항입니다');
+insert into roomchat values(roomchatseq.nextval,'logintest3','logintest3',default,'빠른 답변 부탁드립니다');
+
+
+
+drop sequence saladmemberseq;
+create sequence saladmemberseq nocache;
+
+drop table saladmember cascade constraints purge;
+create table saladmember(
+usernum number,
+userid varchar2(30) primary key,
+userpw varchar2(100),
+username varchar2(30),
+regdate date default sysdate,
+birthday date default sysdate,
+email varchar2(200),
+zipcode varchar2(10),
+address1 varchar2(500),
+address2 varchar2(500),
+phone varchar2(20),
+joincode varchar2(20),
+emailchk number default 0,
+gender varchar2(10)
+); 
+
+insert into saladmember values(saladmemberseq.nextval,'logintest','9f991970fed67a29fb11f26b36c8d4f0f99aa9206dafdab43ed5107e87c30828','이누리',
+sysdate,to_date('1990-12-29'),'nooreel@hanmail.net','01695','서울특별시 노원구 노해로 496','103동 901호','01040628063','55555',1,'남');
+
+insert into saladmember values(saladmemberseq.nextval,'admin','9f991970fed67a29fb11f26b36c8d4f0f99aa9206dafdab43ed5107e87c30828','어드민',
+sysdate,sysdate,'nooreel@hanmail.net','01695','서울특별시 노원구 노해로 496','103동 901호','01033334444','55555',1,'남');
+
+insert into saladmember values(saladmemberseq.nextval,'logintest3','9f991970fed67a29fb11f26b36c8d4f0f99aa9206dafdab43ed5107e87c30828','최어진',
+sysdate,to_date('1965-9-17'),'yms3684@naver.com','25634','광주광역시 남구 대남대로 289','103동 901호','01099163684','55555',1,'남');
+
+insert into saladmember values(saladmemberseq.nextval,'logintest2','9f991970fed67a29fb11f26b36c8d4f0f99aa9206dafdab43ed5107e87c30828','차정환',
+sysdate,to_date('1972-9-18'),'aaa456a@naver.com','25634','부산광역시 북구 금곡대로46번길 50','103동 901호','01096225271','55555',1,'여');
+
+
+
+
+drop sequence prdseq;
+create sequence prdseq nocache;
+
+drop table product cascade constraints purge;
+create table product(
+num int primary key,         
+name varchar2(500),       
+category varchar2(50),      
+price int default 0,      
+country varchar2(500),   
+company varchar2(500),   
+weight int default 0,      
+count int default 1,      
+image varchar2(300),      
+contents varchar2(2000)      
+);
+   
+
+insert into product values(prdseq.nextval, '감자', 'vegetable',1200,'한국','중앙',100,2,'감자.jpg','높은 포만감! 낮은 칼로리!');
+insert into product values(prdseq.nextval, '고구마', 'vegetable',1100,'한국','중앙',100,2,'고구마.jpg','높은 포만감! 낮은 칼로리!');
+insert into product values(prdseq.nextval, '꽃맛살', 'topping',1500,'한국','중앙',100,2,'꽃맛살.jpg','남녀노소 누구나 좋아하는 크래미!');
+insert into product values(prdseq.nextval, '닭가슴살', 'topping',1500,'한국','중앙',100,2,'닭가슴살.jpg','고단백의 건강한 다이어트 건강식품');
+insert into product values(prdseq.nextval, '닭가슴살볼', 'mainmenu',1500,'한국','중앙',100,2,'닭가슴살볼.jpg','닭가슴살을 먹기 좋게 보기 좋게 동글동글');
+
+insert into product values(prdseq.nextval, '닭가슴살 샐러드', 'finishedgoods',6000,'한국','중앙',100,2,'닭가슴살완.jpg','고단백 닭가슴살로 건강한 다이어트!');
+insert into product values(prdseq.nextval, '당근', 'vegetable',1000,'한국','중앙',100,2,'당근.jpg','아삭아삭함이 일품입니다 ');
+insert into product values(prdseq.nextval, '딸기', 'fruit',1500,'한국','중앙',100,2,'딸기.jpg','샐러드에 달콤함을 더해줍니다');
+insert into product values(prdseq.nextval, '땅콩', 'topping',900,'한국','중앙',100,2,'땅콩.jpg','부족한 영양소를 채워줍니다');
+insert into product values(prdseq.nextval, '레몬', 'fruit',1500,'한국','중앙',100,2,'레몬.jpg','아이 새콤해');
+insert into product values(prdseq.nextval, '리코타치즈', 'topping',1500,'한국','중앙',100,2,'리코타치즈.jpg','샐러드와 치즈의 부드러운 조합');
+insert into product values(prdseq.nextval, '마늘빵', 'topping',2000,'한국','중앙',100,2,'마늘빵.jpg','샐러드의 부족한 허기를 부담스럽지않게 채워주는 메뉴');
+insert into product values(prdseq.nextval, '머스타드', 'dressing',500,'한국','중앙',100,2,'머스타드.jpg','머스타드가 샐러드의 풍미를 돋궈줍니다');
+insert into product values(prdseq.nextval, '메론', 'fruit',1500,'한국','중앙',100,2,'메론.jpg','달아요 아주 달아요');
+insert into product values(prdseq.nextval, '물냉이', 'vegetable',1000,'한국','중앙',100,2,'물냉이.jpg','싱그러운 물냉이 넣어봐요');
+insert into product values(prdseq.nextval, '바나나', 'fruit',1500,'한국','중앙',100,2,'바나나.jpg','달달하면서도 든든한 아침 최고의 과일!');
+insert into product values(prdseq.nextval, '발사믹', 'dressing',500,'한국','중앙',100,2,'발사믹.jpg','와인의 깊은 풍미의 샐러드를 느껴보세요');
+insert into product values(prdseq.nextval, '밤', 'topping',1300,'한국','중앙',100,2,'밤.jpg','영양도 풍부, 맛도 풍부, 포만감도 듬뿍');
+insert into product values(prdseq.nextval, '방울토마토', 'fruit',1500,'한국','중앙',100,2,'방울토마토.jpg','상큼한 방울토마토와 함께하세요');
+insert into product values(prdseq.nextval, '배', 'fruit',1500,'한국','중앙',100,2,'배.jpg','시원한 배 샐러드와 아주 잘 어울려요');
+insert into product values(prdseq.nextval, '복숭아', 'fruit',1500,'한국','중앙',100,2,'복숭아.jpg','상큼한 복숭아가 샐러드의 풍미를 더해줍니다');
+insert into product values(prdseq.nextval, '브로콜리', 'vegetable',1000,'한국','중앙',100,2,'브로콜리.jpg','건강과 다이어트를 동시에 챙기는 브로콜리');
+insert into product values(prdseq.nextval, '사과', 'fruit',1500,'한국','중앙',100,2,'사과.jpg','아침 과일의 황제');
+insert into product values(prdseq.nextval, '사우전드아일랜드', 'dressing',500,'한국','중앙',100,2,'사우전드아일랜드.jpg','중후한 맛이 일품인 샐러드를 원하십니까');
+insert into product values(prdseq.nextval, '상추', 'vegetable',1200,'한국','중앙',100,2,'상추.jpg','싱그러운 느낌 물씬 나는 샐러드~');
+insert into product values(prdseq.nextval, '샐러리', 'vegetable',1200,'한국','중앙',100,2,'샐러리.jpg','싱그러운 샐러리를 함께해보세요');
+insert into product values(prdseq.nextval, '소불고기', 'topping',1100,'한국','중앙',100,2,'소불고기.jpg','든든한 소불고기가 한끼를 책임집니다');
+insert into product values(prdseq.nextval, '소불고기 샐러드', 'finishedgoods',6000,'한국','중앙',100,2,'소불고기완.jpg','소불고기 싫어하는 사람 있습니까');
+insert into product values(prdseq.nextval, '시리얼', 'vegetable',1900,'한국','중앙',100,2,'시리얼.jpg','간편하면서도 식사에 적합한 다이어트 시리얼!');
+insert into product values(prdseq.nextval, '시푸드파스타 샐러드', 'finishedgoods',6000,'한국','중앙',100,2,'시푸드파스타.jpg','싱그러운 채소와 풍부한 해산물의 콜라보');
+insert into product values(prdseq.nextval, '아몬드', 'topping',700,'한국','중앙',100,2,'아몬드.jpg','고소하고 듬직한 식감의 아몬드 ㄱㄱ!');
+insert into product values(prdseq.nextval, '아스파라거스', 'vegetable',1000,'한국','중앙',100,2,'아스파라거스.jpg','고급스럽게 아스파라거스 넣어보세요');
+insert into product values(prdseq.nextval, '앵두', 'fruit',1500,'한국','중앙',100,2,'앵두.png','새콤달콤해~');
+insert into product values(prdseq.nextval, '양상추', 'vegetable',600,'한국','중앙',100,2,'양상추.jpg','아삭아삭해~');
+insert into product values(prdseq.nextval, '에이드', 'sidemenu',1500,'한국','중앙',100,2,'에이드.jpg','싱그러운 샐러드와 잘 어울리는 과일에이드');
+insert into product values(prdseq.nextval, '연어', 'topping',1000,'한국','중앙',100,2,'연어.jpg','흐르는 강물을 ~ 거슬러 오르는~  저 힘찬 연어들의 힘을 받아보세요');
+insert into product values(prdseq.nextval, '오렌지', 'fruit',1500,'한국','중앙',100,2,'오렌지.jpg','새콤달콤합니다');
+insert into product values(prdseq.nextval, '오리엔탈', 'dressing',500,'한국','중앙',100,2,'오리엔탈.jpg','한국인의 입맛에 잘 맞는 간장과 달콤한 과일맛을 내는 소스');
+insert into product values(prdseq.nextval, '오이', 'vegetable',1000,'한국','중앙',100,2,'오이.jpg','상큼 아삭아삭 어디 넣어도 맛있어');
+insert into product values(prdseq.nextval, '옥수수', 'topping',1000,'한국','중앙',100,2,'옥수수.jpg','든든하고 맛좋은 노란 옥수수 식욕을 돋굽니다');
+insert into product values(prdseq.nextval, '요거트', 'sidemenu',1500,'한국','중앙',100,2,'요거트.jpg','샐러드와 함께 고급스럽게 즐기는 요거트');
+insert into product values(prdseq.nextval, '은행', 'topping',1000,'한국','중앙',100,2,'은행.jpg','부족할 수 있는 영양분을 만점으로 만듭니다!');
+insert into product values(prdseq.nextval, '이탈리안', 'dressing',500,'한국','중앙',100,2,'이탈리안.jpg','야채샐러드에 잘 어울리는 식초와 올리브의 풍미가 돋보이는 드레싱');
+insert into product values(prdseq.nextval, '참치', 'topping',1000,'한국','중앙',100,2,'참치.jpg','참치 참치 고추참치 는 아니지만 참치회를 넣었는데 입에 넣으니 녹는다 참살녹~');
+insert into product values(prdseq.nextval, '체리', 'fruit',1500,'한국','중앙',100,2,'체리.jpg','새콤달콤함 샐러드와 아주 잘 어울립니다');
+insert into product values(prdseq.nextval, '치즈 샐러드', 'finishedgoods',6000,'한국','중앙',100,2,'치즈.jpg','치즈 좋아하는사람 필수! 적정량의 치즈와 각종 야채의 하모니');
+insert into product values(prdseq.nextval, '치커리', 'vegetable',1000,'한국','중앙',100,2,'치커리.jpg','쓰지만 영양소는 가득 담고있는 채소');
+insert into product values(prdseq.nextval, '커피', 'sidemenu',1500,'한국','중앙',100,2,'커피.jpg','샐러드를 즐기고 따뜻한 커피한잔 어떠세요');
+insert into product values(prdseq.nextval, '콜라비', 'vegetable',1000,'한국','중앙',100,2,'콜라비1.jpg','중후한 보라색이 샐러드의 풍미를 한껏 끌어올립니다');
+insert into product values(prdseq.nextval, '크래미샐러드', 'finishedgoods',6000,'한국','중앙',100,2,'크래미샐러드.jpg','한살 가득! 두툼한 게살로 샐러드의 풍미가 한가득!');
+insert into product values(prdseq.nextval, '토마토', 'fruit',1500,'한국','중앙',100,2,'토마토.jpg','토마토 맛있어');
+insert into product values(prdseq.nextval, '통곡물 샐러드', 'finishedgoods',6000,'한국','중앙',100,2,'통곡물.jpg','통곡물을 넣어 더 풍부한 맛의 세계를 느끼세요');
+insert into product values(prdseq.nextval, '파슬리', 'vegetable',1000,'한국','중앙',100,2,'파슬리.jpg','파슬리 너무 신선해~');
+insert into product values(prdseq.nextval, '파프리카', 'vegetable',1000,'한국','중앙',100,2,'파프리카.jpg','맛있어여');
+insert into product values(prdseq.nextval, '푸딩', 'sidemenu',1500,'한국','중앙',100,2,'푸딩.jpg','푸~ 푸푸르르 푸 푸 푸딩');
+insert into product values(prdseq.nextval, '푸질리', 'topping',300,'한국','중앙',100,2,'푸질리.jpg','스파게티 좋아하십니까 넣으세요');
+insert into product values(prdseq.nextval, '프렌치', 'dressing',500,'한국','중앙',100,2,'프렌치.jpg','올리브오일과 식초의 환상적 조합!');
+insert into product values(prdseq.nextval, '해바라기씨', 'topping',1000,'한국','중앙',100,2,'해바라기씨.jpg','고소한 해바라기씨가 샐러드를 더욱 맛있게 만듭니다');
+insert into product values(prdseq.nextval, '호두', 'topping',200,'한국','중앙',100,2,'호두.jpg','견과류 하면 호두, 건강에 매우 좋습니다');
+insert into product values(prdseq.nextval, '홍차', 'sidemenu',1500,'한국','중앙',100,2,'홍차.jpg','샐러드를 고급스럽게 마무리해주는 차 한잔 하시지요');
+insert into product values(prdseq.nextval, '훈제오리', 'topping',1700,'한국','중앙',100,2,'훈제오리.jpg','훈제오리로 든든한 샐러드를 만들어보세요!');
+insert into product values(prdseq.nextval, '훈제오리 샐러드', 'finishedgoods',6000,'한국','중앙',100,2,'훈제오리완.jpg','오리고기가 이렇게 샐러드와 잘 어울리는줄 몰랐어요');
+
+
+drop sequence cartseq;
+create sequence cartseq nocache;
+
+drop table cart cascade constraints purge;
+create table cart(
+cartnum number primary key,
+pnum varchar2(30),
+pname varchar2(1000),
+qty number,
+price number,
+multipleprice number,
+userid varchar2(30) not null
+);
+
+
+drop table pay cascade constraints purge;
+create table pay(
+paynum varchar2(1000),
+paypname varchar2(1000),
+payprice number,
+paydate timestamp default sysdate,
+paywho varchar2(100),
+paymet varchar2(150)
+);
+
+insert into pay values('2017112512345678','나만의샐러드[감자(1),당근(1),상추(1),시리얼(1),방울토마토(1),복숭아(1),마늘빵(1),밤(1),에이드(1),머스타드(1),발사믹(1),](1)/',12300,to_date('17/11/25'),'logintest','휴대폰결제');
+insert into pay values('2017112812345678','나만의샐러드[고구마(1),당근(1),파슬리(1),파프리카(1),오렌지(1),체리(1),옥수수(1),요거트(1),발사믹(1),](1)/',11800,to_date('17/11/28'),'logintest','휴대폰결제');
+insert into pay values('2017121212345678','나만의샐러드[상추(1),샐러리(1),시리얼(1),바나나(1),사과(1),리코타치즈(1),마늘빵(1),푸딩(1),이탈리안(1),](1)/',10600,to_date('17/12/12'),'logintest3','카드결제');
+insert into pay values('2017121312345678','나만의샐러드[양상추(1),오이(1),파슬리(1),방울토마토(1),아몬드(1),연어(1),커피(1),프렌치(1),](1)/',11500,to_date('17/12/13'),'logintest','휴대폰결제');
+insert into pay values('2017121412345678','나만의샐러드[양상추(1),오이(1),파슬리(1),방울토마토(1),아몬드(1),연어(1),커피(1),프렌치(1),](1)/',9900,to_date('17/12/14'),'logintest','휴대폰결제');
+insert into pay values('2017121512345678','나만의샐러드[감자(1),당근(1),상추(1),시리얼(1),방울토마토(1),복숭아(1),마늘빵(1),밤(1),에이드(1),머스타드(1),발사믹(1),](1)/',12300,to_date('17/12/15'),'logintest3','휴대폰결제');
+insert into pay values('2017121612345678','나만의샐러드[고구마(1),당근(1),파슬리(1),파프리카(1),오렌지(1),체리(1),옥수수(1),요거트(1),발사믹(1),](1)/',11800,to_date('17/12/16'),'logintest','휴대폰결제');
+insert into pay values('2017121712345678','나만의샐러드[상추(1),샐러리(1),시리얼(1),바나나(1),사과(1),리코타치즈(1),마늘빵(1),푸딩(1),이탈리안(1),](1)/',10600,to_date('17/12/17'),'logintest','휴대폰결제');
+insert into pay values('2017121812345678','나만의샐러드[양상추(1),오이(1),파슬리(1),방울토마토(1),아몬드(1),연어(1),커피(1),프렌치(1),](1)/',11500,to_date('17/12/18'),'logintest3','계좌이체');
+insert into pay values('2017121912345678','나만의샐러드[양상추(1),오이(1),파슬리(1),방울토마토(1),아몬드(1),연어(1),커피(1),프렌치(1),](1)/',9900,to_date('17/12/19'),'logintest','계좌이체');
+insert into pay values('2017122012345678','나만의샐러드[상추(1),샐러리(1),시리얼(1),바나나(1),사과(1),리코타치즈(1),마늘빵(1),푸딩(1),이탈리안(1),](1)/',10600,to_date('17/12/20'),'logintest','계좌이체');
+insert into pay values('2017122112345678','나만의샐러드[양상추(1),오이(1),파슬리(1),방울토마토(1),아몬드(1),연어(1),커피(1),프렌치(1),](1)/',11500,to_date('17/12/21'),'logintest3','무통장입금');
+insert into pay values('2017122212345678','나만의샐러드[양상추(1),오이(1),파슬리(1),방울토마토(1),아몬드(1),연어(1),커피(1),프렌치(1),](1)/',9900,to_date('17/12/22'),'logintest','무통장입금');
+insert into pay values('2017122312345678','나만의샐러드[감자(1),당근(1),상추(1),시리얼(1),방울토마토(1),복숭아(1),마늘빵(1),밤(1),에이드(1),머스타드(1),발사믹(1),](1)/',12300,to_date('17/12/23'),'logintest','무통장입금');
+insert into pay values('2017122412345678','나만의샐러드[고구마(1),당근(1),파슬리(1),파프리카(1),오렌지(1),체리(1),옥수수(1),요거트(1),발사믹(1),](1)/',11800,to_date('17/12/24'),'logintest3','카드결제');
+insert into pay values('2017122512345678','나만의샐러드[상추(1),샐러리(1),시리얼(1),바나나(1),사과(1),리코타치즈(1),마늘빵(1),푸딩(1),이탈리안(1),](1)/',10600,to_date('17/12/25'),'logintest','카드결제');
+insert into pay values('2017122612345678','나만의샐러드[양상추(1),오이(1),파슬리(1),방울토마토(1),아몬드(1),연어(1),커피(1),프렌치(1),](1)/',11500,to_date('17/12/26'),'logintest','카드결제');
+insert into pay values('2017122712345678','나만의샐러드[양상추(1),오이(1),파슬리(1),방울토마토(1),아몬드(1),연어(1),커피(1),프렌치(1),](1)/',9900,to_date('17/12/27'),'logintest3','카드결제');
+
+insert into pay values('2017122412345678','나만의샐러드[고구마(1),당근(1),파슬리(1),파프리카(1),오렌지(1),체리(1),옥수수(1),요거트(1),발사믹(1),](1)/',11800,to_date('17/12/24'),'logintest','휴대폰결제');
+insert into pay values('2017122512345678','나만의샐러드[상추(1),샐러리(1),시리얼(1),바나나(1),사과(1),리코타치즈(1),마늘빵(1),푸딩(1),이탈리안(1),](1)/',10600,to_date('17/12/25'),'logintest','휴대폰결제');
+insert into pay values('2017122612345678','나만의샐러드[양상추(1),오이(1),파슬리(1),방울토마토(1),아몬드(1),연어(1),커피(1),프렌치(1),](1)/',11500,to_date('17/12/26'),'logintest3','휴대폰결제');
+insert into pay values('2017122712345678','나만의샐러드[양상추(1),오이(1),파슬리(1),방울토마토(1),아몬드(1),연어(1),커피(1),프렌치(1),](1)/',9900,to_date('17/12/27'),'logintest','휴대폰결제');
+insert into pay values('2017122812345678','나만의샐러드[상추(1),샐러리(1),시리얼(1),바나나(1),사과(1),리코타치즈(1),마늘빵(1),푸딩(1),이탈리안(1),](1)/',10600,to_date('17/12/28'),'logintest2','카드결제');
+insert into pay values('2017122912345678','나만의샐러드[양상추(1),오이(1),파슬리(1),방울토마토(1),아몬드(1),연어(1),커피(1),프렌치(1),](1)/',11500,to_date('17/12/29'),'logintest3','카드결제');
+insert into pay values('2017123012345678','나만의샐러드[양상추(1),오이(1),파슬리(1),방울토마토(1),아몬드(1),연어(1),커피(1),프렌치(1),](1)/',9900,to_date('17/12/30'),'logintest','카드결제');
+insert into pay values('2017123112345678','나만의샐러드[감자(1),당근(1),상추(1),시리얼(1),방울토마토(1),복숭아(1),마늘빵(1),밤(1),에이드(1),머스타드(1),발사믹(1),](1)/',12300,to_date('17/12/31'),'logintest2','카드결제');
+insert into pay values('2017123112345678','나만의샐러드[양상추(1),오이(1),파슬리(1),방울토마토(1),아몬드(1),연어(1),커피(1),프렌치(1),](1)/',9900,to_date('17/12/31'),'logintest','계좌이체');
+insert into pay values('2018010112345678','나만의샐러드[고구마(1),당근(1),파슬리(1),파프리카(1),오렌지(1),체리(1),옥수수(1),요거트(1),발사믹(1),](1)/',11800,to_date('18/01/01'),'logintest2','계좌이체');
+insert into pay values('2018010212345678','나만의샐러드[상추(1),샐러리(1),시리얼(1),바나나(1),사과(1),리코타치즈(1),마늘빵(1),푸딩(1),이탈리안(1),](1)/',10600,to_date('18/01/02'),'logintest2','계좌이체');
+insert into pay values('2018010212345678','나만의샐러드[양상추(1),오이(1),파슬리(1),방울토마토(1),아몬드(1),연어(1),커피(1),프렌치(1),](1)/',11500,to_date('18/01/02'),'logintest','휴대폰결제');
+insert into pay values('2018010212345678','나만의샐러드[양상추(1),오이(1),파슬리(1),방울토마토(1),아몬드(1),연어(1),커피(1),프렌치(1),](1)/',9900,to_date('18/01/02'),'logintest3','휴대폰결제');
+
+
+drop sequence saladBoardseq;
+create sequence saladBoardseq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 10000
+  nocache;
+  
+
+drop table saladBoard cascade constraints purge;
+create table saladBoard( 
+   num number not null primary key,
+   writer varchar2(100) not null,
+   subject varchar2(1000) not null,
+   passwd varchar2(120) not null,
+   regdate date default sysdate,
+   readcount int default 0,
+   ref number not null,
+   restep number not null,
+   relevel number not null,
+   content varchar2(2000) not null,
+   image varchar2(100),
+   secret number default 0,
+   notice number default 0 
+);
+
+insert into 
+ saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+ values(saladBoardseq.nextval,'logintest','test3','1234',sysdate,0,saladBoardseq.nextval,0,0,'테스트7','7.png',0,0);
+
+insert into 
+ saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+ values(saladBoardseq.nextval,'logintest','test3','1234',sysdate,0,saladBoardseq.nextval,0,0,'테스트6','6.png',0,0);
+      
+insert into
+saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+values(saladBoardseq.nextval,'logintest','test3','1234',sysdate,0,saladBoardseq.nextval,0,0,'테스트5','5.png',0,0);
+      
+insert into
+saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+values(saladBoardseq.nextval,'logintest','test3','1234',sysdate,0,saladBoardseq.nextval,0,0,'테스트4','4.png',0,0);
+
+insert into
+      saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+      values(saladBoardseq.nextval,'logintest','test3','1234',sysdate,0,saladBoardseq.nextval,0,0,'테스트3','3.png',0,0);
+
+
+insert into
+      saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+      values(saladBoardseq.nextval,'logintest','test2','1234',sysdate,0,saladBoardseq.nextval,0,0,'테스트2','2.png',0,0);
+
+
+insert into
+      saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+      values(saladBoardseq.nextval,'logintest','test1','1234',sysdate,0,saladBoardseq.nextval,0,0,'테스트1','1.png',0,0);
+
+insert into
+      saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+      values(saladBoardseq.nextval,'logintest','배송문의입니다','1234',sysdate,0,saladBoardseq.nextval,0,0,'손님들이 약속에 민감한분들이라 늦지않았으면 좋겠습니다 언제쯤 도착하는지 알 수있나요?','Chrysanthemum.jpg',0,0);
+
+insert into
+      saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+      values(saladBoardseq.nextval,'logintest','서비스 문의요!','1234',sysdate,0,saladBoardseq.nextval,0,0,'아이 생일인데 당일날 혹시 폭죽도 보내주실 수 있나요?ㅜㅜ','Desert.jpg',1,0);
+      
+insert into
+      saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+      values(saladBoardseq.nextval,'logintest','감자가 이상해요','1234',sysdate,0,saladBoardseq.nextval,0,0,'성숙한 9살이라 엄마한테 이르지않고, 여기에 글을 먼저올릴게요. <br> 제가 감자 싹난걸 먹어봐서 아는데요, <br>  이 감자샐러드 싹난 감자로 만든거아닌가요 ??? 배가 아파요 ','Jellyfish.jpg',0,0);
+      
+insert into
+      saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+      values(saladBoardseq.nextval,'logintest','결제 문의 입니다','1234',sysdate,0,saladBoardseq.nextval,0,0,'카드로 일부결제하고 계좌이체로 일부 계산할 수있나요??','Koala.jpg',0,0);
+      
+insert into
+      saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+      values(saladBoardseq.nextval,'logintest','분류 배송문의  ','1234',sysdate,0,saladBoardseq.nextval,0,0,'안녕하세요. ***회사 에서 주문하려고합니다<br>다름이 아니라, 배송될때 분류되서 묶어서 왔으면 하는데요.<br> 채소만 있는샐러드,채소과일샐러드,육류나 어류가(예를들어 참치,연어)섞여있는 샐러드들은 분류되서 도착했으면 좋겠습니다','Tulips.jpg',0,0);
+      
+insert into
+      saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+      values(saladBoardseq.nextval,'logintest','집에서 돈드리면안돼나요??','1234',sysdate,0,saladBoardseq.nextval,0,0,'제가 샐러드를 주문하고싶은데요, 오빠가 돈을 가져가버려서 결제를 못하고있어요 ㅠㅠ <br> 혹시 착불로 계산할 수있을까요 ? 오빠 잘때 결제하고 싶어요','Chrysanthemum.jpg',1,0);
+      
+
+insert into
+      saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+      values(saladBoardseq.nextval,'logintest','서비스 문의요!','1234',sysdate,0,saladBoardseq.nextval,0,0,'아이 생일인데 당일날 혹시 폭죽도 보내주실 수 있나요?ㅜㅜ','Hydrangeas.jpg',0,0);
+
+
+insert into
+      saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+      values(saladBoardseq.nextval,'logintest','서비스 문의요!','1234',sysdate,0,saladBoardseq.nextval,0,0,'수능이 끝나서 , 담임선생님(교무실)께 선물해드리고 싶은데요! 포장이랑 편지도 같이 해주실 수있나요??','Lighthouse.jpg',0,0);
+
+insert into
+      saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+      values(saladBoardseq.nextval,'logintest','내가만든 샌드위치!','1234',sysdate,0,saladBoardseq.nextval,0,0,'이거 너무너무맛있네요 ㅋㅋ','salad12.jpg',0,0);
+
+insert into 
+ saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+ values(saladBoardseq.nextval,'관리자','제1공지 입니다','1234',sysdate,0,saladBoardseq.nextval,0,0,'테스트6','6.png',0,1);
+ 
+ insert into 
+ saladBoard(num,writer,subject,passwd,regdate,readcount,ref,restep,relevel,content,image,secret,notice)
+ values(saladBoardseq.nextval,'관리자','제2공지 입니다','1234',sysdate,0,saladBoardseq.nextval,0,0,'테스트6','6.png',0,1);
+
+
+drop sequence saladReviewseq;
+create sequence saladReviewseq
+  increment by 1
+  start with 1
+  minvalue 1
+  maxvalue 10000
+  nocache;
+  
+drop table saladReview cascade constraints purge;
+create table saladReview( 
+   num number not null primary key,
+   subject varchar2(1000) not null,
+   writer varchar2(300) not null,
+   regdate timestamp not null,
+   content varchar2(2000),
+   image varchar2(100) not null,
+   secret number default 0
+);
+
+
+
+insert into saladReview(num,subject,writer,regdate,content,image,secret) values(saladReviewseq.nextval,'올리브새싹토마토샐러드','logintest',sysdate,
+'뒤에서1등','1.png',0);
+
+insert into saladReview(num,subject,writer,regdate,content,image,secret) values(saladReviewseq.nextval,'올리브새싹토마토샐러드','logintest',sysdate,
+'뒤에서2등','2.png',0);
+
+insert into saladReview(num,subject,writer,regdate,content,image,secret) values(saladReviewseq.nextval,'토마토샐러드','logintest',sysdate,
+'빵,방울토마토,파프리카,시금치,오이 ','salad15.jpg',0);
+insert into saladReview(num,subject,writer,regdate,content,image,secret) values(saladReviewseq.nextval,'감자샐러드','logintest',sysdate,
+'감자샐러드','salad14.jpg',0);
+insert into saladReview(num,subject,writer,regdate,content,image,secret) values(saladReviewseq.nextval,'감자샐러드','logintest',sysdate,
+'삶은감자,파슬리,기타 등등으로 만든 감자샐러드','salad13.jpg',0);
+
+insert into saladReview(num,subject,writer,regdate,content,image,secret) values(saladReviewseq.nextval,'닭가슴살샐러드','logintest',sysdate,
+'적양파,닭가슴살,풀,?? 로 만들어진 샐러드빵입니다','salad12.jpg',0);
+insert into saladReview(num,subject,writer,regdate,content,image,secret) values(saladReviewseq.nextval,'재료몰라샐러드','logintest',sysdate,
+'????','salad11.jpg',0);
+insert into saladReview(num,subject,writer,regdate,content,image,secret) values(saladReviewseq.nextval,'베이컨에그샐러드','logintest',sysdate,
+'적양파,베이컨,풀,삶은계란,버섯 으로 만든 샐러드입니다','salad10.jpg',0);
+
+insert into saladReview(num,subject,writer,regdate,content,image,secret) values(saladReviewseq.nextval,'과일샐러드','logintest',sysdate,
+'포도,딸기,키위,감,파인애플 등등으로 만들어진 과일 샐러드 ','salad9.png',0);
+insert into saladReview(num,subject,writer,regdate,content,image,secret) values(saladReviewseq.nextval,'치코리타 샐러드','logintest',sysdate,
+'치코리타 풀 ,양파, 뭔지모르는 주황색으로 만들어진 샐러드','salad8.png',0);
+
+insert into saladReview(num,subject,writer,regdate,content,image,secret) values(saladReviewseq.nextval,'닭가슴살샐러드','logintest',sysdate,
+'치커리,콩,마카로니,유전자변형옥수수,적양파,치즈,닭가슴살,애호박 으로 만든 샐러드입니다','salad7.png',0);
+
+
+insert into saladReview(num,subject,writer,regdate,content,image,secret) values(saladReviewseq.nextval,'토마토브로콜리샐러드','logintest',sysdate,
+'방울토마토,양파,감자,치즈,브로콜리,구운마늘 등등으로만든 샐러드피자 입니다','salad6.jpg',0);
+
+insert into saladReview(num,subject,writer,regdate,content,image,secret) values(saladReviewseq.nextval,'치킨샐러드','logintest',sysdate,
+'치킨,당근,양배추,이파리 등등으로 만든 샐러드입니다 ','salad5.jpg',0);
+
+insert into saladReview(num,subject,writer,regdate,content,image,secret) values(saladReviewseq.nextval,'토마토샐러드','logintest',sysdate,
+'알록달록 방울토마토,치즈,오리엔탈 드레싱으로 만든 샐러드입니다','salad3.jpg',0);
+
+insert into saladReview(num,subject,writer,regdate,content,image,secret) values(saladReviewseq.nextval,'감자샐러드','logintest',sysdate,
+'양파,감자,당근,피망,적양파,잣,깨,채소 로 만들어진 샐러드입니다','salad2.jpg',0);
+
+insert into saladReview(num,subject,writer,regdate,content,image,secret) values(saladReviewseq.nextval,'올리브새싹토마토샐러드','logintest',sysdate,
+'올리브,새싹,토마토 로 만들어진 샐러드입니다.','salad1.jpg',0);
+
+commit;
+
+
+drop table ReviewReply cascade constraints purge;
+create table ReviewReply(
+num number references saladReview(num) on delete cascade,
+writer varchar2(50) not null,
+regdate timestamp not null,
+replyContent varchar2(1000) not null
+);
+
+insert into ReviewReply(num,writer,regdate,replyContent) values(1,'logintest',sysdate,'댓글내용1');
+insert into ReviewReply(num,writer,regdate,replyContent) values(1,'logintest',sysdate,'댓글내용2');
+insert into ReviewReply(num,writer,regdate,replyContent) values(1,'logintest',sysdate,'댓글내용4');
+insert into ReviewReply(num,writer,regdate,replyContent) values(1,'logintest',sysdate,'댓글내용5');
+insert into ReviewReply(num,writer,regdate,replyContent) values(2,'logintest',sysdate,'댓글내용1');
+insert into ReviewReply(num,writer,regdate,replyContent) values(2,'logintest',sysdate,'댓글내용2');
+insert into ReviewReply(num,writer,regdate,replyContent) values(2,'logintest',sysdate,'댓글내용3');
+insert into ReviewReply(num,writer,regdate,replyContent) values(2,'logintest',sysdate,'댓글내용4');
+insert into ReviewReply(num,writer,regdate,replyContent) values(2,'logintest',sysdate,'댓글내용5');
+insert into ReviewReply(num,writer,regdate,replyContent) values(2,'logintest',sysdate,'댓글내용6');
+insert into ReviewReply(num,writer,regdate,replyContent) values(2,'logintest',sysdate,'댓글내용7');
+insert into ReviewReply(num,writer,regdate,replyContent) values(2,'logintest',sysdate,'댓글내용8');
+insert into ReviewReply(num,writer,regdate,replyContent) values(2,'logintest',sysdate,'댓글내용9');
+insert into ReviewReply(num,writer,regdate,replyContent) values(2,'logintest',sysdate,'댓글내용8');
+insert into ReviewReply(num,writer,regdate,replyContent) values(2,'logintest',sysdate,'댓글내용9');
+insert into ReviewReply(num,writer,regdate,replyContent) values(2,'logintest',sysdate,'댓글내용10');
+insert into ReviewReply(num,writer,regdate,replyContent) values(2,'logintest',sysdate,'댓글내용11');
+insert into ReviewReply(num,writer,regdate,replyContent) values(2,'logintest',sysdate,'댓글내용12');
+insert into ReviewReply(num,writer,regdate,replyContent) values(2,'logintest',sysdate,'댓글내용13');
+insert into ReviewReply(num,writer,regdate,replyContent) values(3,'logintest',sysdate,'댓글내용1');
+insert into ReviewReply(num,writer,regdate,replyContent) values(3,'logintest',sysdate,'댓글내용2');
+insert into ReviewReply(num,writer,regdate,replyContent) values(3,'logintest',sysdate,'댓글내용3');
+insert into ReviewReply(num,writer,regdate,replyContent) values(3,'logintest',sysdate,'댓글내용4');
+insert into ReviewReply(num,writer,regdate,replyContent) values(4,'logintest',sysdate,'댓글내용1');
+insert into ReviewReply(num,writer,regdate,replyContent) values(4,'logintest',sysdate,'댓글내용2');
+insert into ReviewReply(num,writer,regdate,replyContent) values(5,'logintest',sysdate,'댓글내용1');
+insert into ReviewReply(num,writer,regdate,replyContent) values(5,'logintest',sysdate,'댓글내용2');
+insert into ReviewReply(num,writer,regdate,replyContent) values(5,'logintest',sysdate,'댓글내용3');
+insert into ReviewReply(num,writer,regdate,replyContent) values(5,'logintest',sysdate,'댓글내용4');
+insert into ReviewReply(num,writer,regdate,replyContent) values(6,'logintest',sysdate,'댓글내용1');
+insert into ReviewReply(num,writer,regdate,replyContent) values(7,'logintest',sysdate,'댓글내용2');
+insert into ReviewReply(num,writer,regdate,replyContent) values(8,'logintest',sysdate,'댓글내용3');
+insert into ReviewReply(num,writer,regdate,replyContent) values(9,'logintest',sysdate,'댓글내용4');
+insert into ReviewReply(num,writer,regdate,replyContent) values(10,'logintest',sysdate,'맛있겠네요');
+insert into ReviewReply(num,writer,regdate,replyContent) values(11,'logintest',sysdate,'군침이 도는군요');
+insert into ReviewReply(num,writer,regdate,replyContent) values(12,'logintest',sysdate,'만드신방법좀알려주세요');
+insert into ReviewReply(num,writer,regdate,replyContent) values(13,'logintest',sysdate,'ㅎㅇㅇ');
+insert into ReviewReply(num,writer,regdate,replyContent) values(14,'logintest',sysdate,'첫댓글입니다! 1등!');
+commit;
+
+
+drop table ReviewLike cascade constraints purge;
+create table ReviewLike(
+num number references saladReview(num) on delete cascade,
+userid varchar2(50) not null,
+regdate timestamp not null
+);
+
+commit;
+

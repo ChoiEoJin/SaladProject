@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="alias.mybatis.paymapper">
+	
+	<select id="getBean" parameterType="String" resultType="Cart">
+	select * from cart where cartnum=#{cartnum}
+	</select>
+	
+	<insert id="insertPay" parameterType="Hashmap">
+	insert into pay values(#{paynum},#{payname},#{payprice},default,#{paywho},#{paymet})
+	</insert>
+	
+	<delete id="deleteCart">
+	delete from cart where cartnum=#{cartnum}
+	</delete>
+	
+	<select id="ListByUserid" parameterType="String" resultType="Pay">
+	select * from pay where paywho=#{userid} order by paydate desc
+	</select>
+	
+	<select id="payListForAdmin" resultType="Pay" parameterType="Hashmap">
+	select * from pay
+	<if test="whatColumn=='paypname'">
+	where paypname like #{keyword}
+	</if>
+	<if test="whatColumn=='paywho'">
+	where paywho=#{keyword}
+	</if>
+	order by paydate desc
+	</select>
+	
+	<select id="getTotalCount" resultType="int" parameterType="Hashmap">
+	select count(*) from pay
+	<if test="whatColumn=='paypname'">
+	where paypname=#{keyword}
+	</if>
+	<if test="whatColumn=='paywho'">
+	where paywho=#{keyword}
+	</if>
+	order by paydate desc
+	</select>
+	
+	<select id="gettoday" resultType="String">
+	select to_char(trunc(sysdate,'dd'),'yy/MM/dd') from dual
+	</select>
+	
+	<select id="todaySales" resultType="String" parameterType="String">
+	select to_char(sum(payprice)) from pay where paydate like #{today}
+	</select>
+	
+	<select id="beforeMonth" resultType="String">
+	SELECT to_char(trunc(add_months(sysdate, -1),'mm') ,'yy/mm') FROM dual
+	</select>
+	
+	<select id="beforeMonthSales" resultType="String" parameterType="String">
+	select to_char(sum(payprice)) from pay where paydate like #{month}
+	</select>
+	
+	<select id="countSales" resultType="int" parameterType="String">
+	select count(*) from pay where paypname like #{str}
+	</select>
+	
+	<select id="getYesterday" resultType="String">
+	select to_char(trunc(sysdate,'dd')-1,'yy/MM/dd') from dual
+	</select>
+	
+	<select id="yesterdaySales" resultType="String" parameterType="String">
+	select to_char(sum(payprice)) from pay where paydate like #{yesterday}
+	</select>
+	
+	<select id="getLastWeek" resultType="String">
+	select to_char(trunc(sysdate,'dd')-7,'yy/MM/dd') from dual
+	</select>
+	
+	<select id="weekSales" resultType="String" parameterType="String">
+	select to_char(sum(payprice)) from pay where paydate > #{lastWeek}
+	</select>
+	
+	<select id="personCount" resultType="int">
+	select count(*) from pay
+	</select>
+	
+	<select id="AlltotalPrice" resultType="String">
+	select to_char(sum(payprice)) from pay
+	</select>
+	
+	<select id="getMonth" resultType="String">
+	select to_char(trunc(sysdate,'dd'),'yy/MM/') from dual
+	</select>
+	
+	<select id="monthSales" resultType="String" parameterType="String">
+	select to_char(sum(payprice)) from pay where paydate like #{month}
+	</select>
+	
+	<select id="getBeforeYesterday" resultType="String">
+	select to_char(trunc(sysdate,'dd')-2,'yy/MM/dd') from dual
+	</select>
+	
+	<select id="beforeYesterdaySales" resultType="String" parameterType="String">
+	select to_char(sum(payprice)) from pay where paydate like #{beforeYesterday}
+	</select>
+	
+	<select id="PriceForchart" resultType="String" parameterType="String">
+	select to_char(sum(payprice)) from pay where paydate like #{day}
+	</select>
+	
+	<select id="getTotalCount2" resultType="int">
+	select count(*) from (select a.paywho, a.paymet ,b.gender, b.address1, to_char(sysdate,'yyyy')-to_char(b.birthday,'yyyy') as age from pay a, saladmember b where a.paywho=b.userid)
+	</select>
+	
+	<select id="getavgAge" parameterType="int" resultType="double">
+	select sum(age)/#{totalcount2} from (select a.paywho, a.paymet ,b.gender, b.address1, to_char(sysdate,'yyyy')-to_char(b.birthday,'yyyy') as age from pay a, saladmember b where a.paywho=b.userid)
+	</select>
+	
+	<select id="getSungbi" resultType="int">
+	select count(*) from (select a.paywho, a.paymet ,b.gender, b.address1, to_char(sysdate,'yyyy')-to_char(b.birthday,'yyyy') as age from pay a, saladmember b where a.paywho=b.userid) where gender='남'
+	</select>
+	
+	<select id="getAddress" resultType="String">
+	select distinct(address1) from (select a.paywho, a.paymet ,b.gender, b.address1, to_char(sysdate,'yyyy')-to_char(b.birthday,'yyyy') as age from pay a, saladmember b where a.paywho=b.userid)
+	</select>
+	
+	<select  id="getAddressPer" parameterType="addressBean" resultType="int">
+	select count(*) from (select a.paywho, a.paymet ,b.gender, b.address1, to_char(sysdate,'yyyy')-to_char(b.birthday,'yyyy') as age from pay a, saladmember b where a.paywho=b.userid) where address1 like #{address1}
+	</select>
+	
+	<select id="getPaymetList" resultType="String">
+	select distinct(paymet) from (select a.paywho, a.paymet ,b.gender, b.address1, to_char(sysdate,'yyyy')-to_char(b.birthday,'yyyy') as age from pay a, saladmember b where a.paywho=b.userid)
+	</select>
+	
+	<select id="getPayMetPer" resultType="int" parameterType="addressBean">
+	select count(*) from (select a.paywho, a.paymet ,b.gender, b.address1, to_char(sysdate,'yyyy')-to_char(b.birthday,'yyyy') as age from pay a, saladmember b where a.paywho=b.userid) where paymet=#{paymet}
+	</select>
+	
+	
+	
+</mapper>
