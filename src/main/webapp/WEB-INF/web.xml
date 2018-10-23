@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+	</context-param>
+	
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- Processes application requests -->
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<filter>
+	<filter-name>encodingFilter</filter-name>
+	<filter-class>
+	org.springframework.web.filter.CharacterEncodingFilter
+	</filter-class>
+	<init-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+	</init-param>
+	<init-param>
+		<param-name>forceEncoding</param-name>
+		<param-value>true</param-value>
+	</init-param>
+</filter>
+<filter-mapping>
+	<filter-name>encodingFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
+
+<!-- talk Servlet Mapping(1:1상담) -->
+<servlet>
+     <servlet-name>talk</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/talk-servlet.xml</param-value>
+     </init-param>
+</servlet>
+<servlet-mapping>
+     <servlet-name>talk</servlet-name>
+     <url-pattern>*.talk</url-pattern>
+</servlet-mapping>
+
+
+<!-- 회원 관리(Member) Mapping -->
+<servlet>
+     <servlet-name>member</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/member-servlet.xml</param-value>
+     </init-param>
+</servlet>
+<servlet-mapping>
+     <servlet-name>member</servlet-name>
+     <url-pattern>*.member</url-pattern>
+</servlet-mapping>
+
+<!-- 메인화면(main) Mapping -->
+<servlet>
+     <servlet-name>main</servlet-name>
+     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+     <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>/WEB-INF/spring/appServlet/main-servlet.xml</param-value>
+     </init-param>
+</servlet>
+<servlet-mapping>
+     <servlet-name>main</servlet-name>
+     <url-pattern>*.main</url-pattern>
+</servlet-mapping>
+
+<!-- 프로덕트 Mapping -->
+<servlet>
+	<servlet-name>product</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	<init-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>/WEB-INF/spring/appServlet/product-servlet.xml</param-value>
+	</init-param>
+</servlet>
+<servlet-mapping>
+	<servlet-name>product</servlet-name>
+	<url-pattern>*.prd</url-pattern>
+</servlet-mapping>
+
+<!-- 장바구니(cart) Mapping -->
+<servlet>
+	<servlet-name>cart</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	<init-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>/WEB-INF/spring/appServlet/cart-servlet.xml</param-value>
+	</init-param>
+</servlet>
+<servlet-mapping>
+	<servlet-name>cart</servlet-name>
+	<url-pattern>*.cart</url-pattern>
+</servlet-mapping>
+
+<!-- 샐러드(salad) Mapping -->
+<servlet>
+	<servlet-name>salad</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	<init-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>/WEB-INF/spring/appServlet/salad-servlet.xml</param-value>
+	</init-param>
+</servlet>
+<servlet-mapping>
+	<servlet-name>salad</servlet-name>
+	<url-pattern>*.salad</url-pattern>
+</servlet-mapping>
+
+<!-- 결제(pay) Mapping -->
+<servlet>
+	<servlet-name>pay</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	<init-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>/WEB-INF/spring/appServlet/pay-servlet.xml</param-value>
+	</init-param>
+</servlet>
+<servlet-mapping>
+	<servlet-name>pay</servlet-name>
+	<url-pattern>*.pay</url-pattern>
+</servlet-mapping>
+
+<!--  게시판 Mapping -->
+	<servlet>
+		<servlet-name>SALADBOARD</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/board-servlet.xml</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SALADBOARD</servlet-name>
+		<url-pattern>*.bd</url-pattern>
+	</servlet-mapping>
+
+
+</web-app>

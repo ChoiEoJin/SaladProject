@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="alias.mybatis.membermapper">
+	<insert id="insertMember" parameterType="Member">
+	insert into saladmember values(
+	saladmemberseq.nextval,#{userid},#{userpw},#{username},
+	default,#{birthday},#{email},
+	#{zipcode},#{address1},#{address2},
+	#{phone},#{joincode},default,#{gender}
+	)
+	</insert>
+	
+	<select id="login" parameterType="Hashmap" resultType="int">
+	select count(*) from saladmember where userid=#{userid} and userpw=#{userpw}
+	</select>
+	
+	<select id="getBean" parameterType="Hashmap" resultType="Member">
+	select * from saladmember where userid=#{userid} and userpw=#{userpw}
+	</select>
+	
+	<select id="emailchk" parameterType="Hashmap" resultType="int">
+	select count(*) from saladmember where userid=#{userid} and userpw=#{userpw} and joincode=#{joincode}
+	</select>
+	
+	<update id="emailchkResult" parameterType="Hashmap">
+	update saladmember set emailchk=1 where userid=#{userid} and userpw=#{userpw}
+	</update>
+	
+	<select id="idchk" parameterType="Hashmap" resultType="int">
+	select count(*) from saladmember where userid=#{userid}
+	</select>
+	
+	<select id="searchpw" parameterType="Member" resultType="int">
+	select count(*) from saladmember where userid=#{userid} and birthday=#{birthday} and username=#{username}
+	</select>
+	
+	<update id="updatePW" parameterType="Member">
+	update saladmember set userpw=#{userpw} where userid=#{userid}
+	</update>
+	
+	<select id="searchID" resultType="int" parameterType="Member">
+	select count(*) from saladmember where username=#{username} and birthday=#{birthday} and phone=#{phone}
+	</select>
+	
+	<select id="searchIdResult" resultType="String" parameterType="Member">
+	select userid from saladmember where username=#{username} and birthday=#{birthday} and phone=#{phone}
+	</select>
+	
+	<update id="updateMember" parameterType="Member">
+	update saladmember set userpw=#{userpw}, username=#{username}, birthday=#{birthday}, email=#{email}, zipcode=#{zipcode}, address1=#{address1}, address2=#{address2}, phone=#{phone} where usernum=#{usernum}
+	</update>
+	
+</mapper>

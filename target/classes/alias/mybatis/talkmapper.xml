@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="alias.mybatis.talkmapper">
+	<select id="selectListTalk" resultType="Talk" parameterType="Hashmap">
+		select * from roomchat where roomhoner=#{userid}
+	</select>
+	<insert id="insertData" parameterType="Hashmap">
+		insert into roomchat values(roomchatseq.nextval,#{roomhoner},#{talker},default,#{talk})
+	</insert>
+	<select id="selectRoomHoner" resultType="String">
+		select distinct(roomhoner) from roomchat
+	</select>
+	<select id="selectNewTalk" resultType="Talk" parameterType="String">
+		select roomhoner,talktime,talker,talk 
+		from (select rownum as rank,roomhoner,talktime,talker,talk 
+		from (select * from roomchat where roomhoner=#{roomhoner} order by talktime desc))
+		where rank=1 and talker!='admin'
+	</select>
+	<select id="newtalklist" resultType="Talk" parameterType="Hashmap">
+		select * from roomchat where roomhoner=#{roomhoner} order by talktime asc
+	</select>
+</mapper>
